@@ -1,6 +1,6 @@
 #+TITLE: Projet MiageTch@t Front
 [[file:./logo.png]]
-
+#+OPTIONS: \n:t
 * Table of Contents                                       :TOC_4_gh:noexport:
 - [[#team][Team]]
 - [[#contexte][Contexte]]
