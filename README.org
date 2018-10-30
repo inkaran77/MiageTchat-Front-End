@@ -245,9 +245,9 @@ Nous avons choisi parmi les projets disponibles (Dames, Jeux etc..),le projet Mi
    - Success Response :
     - Code : =201=
     - Content : =Pas de nouveau message=
-    - Error Response 1 :
+   - Error Response 1 :
      - Code : =400 BAD REQUEST=
-     - Cont
+     - Content : =Erreur=
 ** Acceuil
 *** GetAllUsers
    - Return : http code + tous users
