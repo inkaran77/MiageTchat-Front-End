@@ -9,10 +9,10 @@ body{
 }
 
 .login{
-    width: 320px;
-    height: 420px;
+    width: 420px;
+    height: 640px;
     background: white;
-    color: #fff;
+    color: #13138a;
     top: 50%;
     left: 50%;
     position: absolute;
@@ -30,12 +30,15 @@ body{
     color: #13138a;
 }
 
-.login input{
-    width: 100%;
-    margin-bottom: 20px;
+.login fieldset{
+    border: none;
+    margin-bottom: 15px;
+    margin-left: 20px;
 }
 
-.login input[type="text"], input[type="password"]{
+.login input[type="text"], input[type="password"], input[type="date"], input[type="email"]{
+    width: 100%;
+    margin-bottom: 15px;
     border: none;
     border-bottom: 1px solid #13138a;
     background: transparent;
@@ -43,17 +46,22 @@ body{
     height: 30px;
     font-size: 16px;
     color: #3bd1b3;
+
 }
 
+
 .login input[type="submit"], input[type="button"]{
+    width: 50%;
+    margin-bottom: 10px;
     border: none;
     outline: none;
-    height: 40px;
+    height: 30px;
     background: #13138a;
     color: #3bd1b3;
     font-size: 18px;
     font-weight: bold;
     border-radius: 20px;
+    margin-left: 60px;
 }
 
 .logo{
@@ -62,7 +70,7 @@ body{
     border-radius: 30%;
     position: absolute;
     top: -50px;
-    left: 30%;
+    left: 35%;
 }
 
 h1{
