@@ -6,45 +6,45 @@
 
     <body>
 
-        <div class="login">
+        <div class="register" id="register">
             <img src="./images/logo.png" class="logo">
             <h1> Inscription </h1>
             <form id="form">
                     <fieldset>
                             <div class="some-class">
-                              <input type="radio" class="radio" name="x" value="y" id="y" />
+                              <input type="radio" class="radio" value="Homme" id="y" v-model="picked" />
                               <label for="y">Homme</label>
-                              <input type="radio" class="radio" name="x" value="z" id="z" />
-                              <label for="z">Femme</label>
+                              <input type="radio" class="radio" value="Femme" id="z" v-model="picked" />
+                              <label for="Femme">Femme</label>
                             </div>
                     </fieldset>   
                 
                     <p>Identifiant</p>
-                    <input type="text" name="" placeholder="" required><br>
+                    <input type="text" name="" placeholder="" required v-model="id"><br>
 
                     <p>Nom</p>
-                    <input type="text" name="" placeholder="" required><br>
+                    <input type="text" name="" placeholder="" required v-model="lastname"><br>
 
                     <p>Prénom</p>
-                    <input type="text" name="" placeholder="" required><br>
+                    <input type="text" name="" placeholder="" required v-model="firstname"><br>
 
                     <p>Date de naissance</p>
-                    <input placeholder="" class="textbox-n" type="text" onfocus="(this.type='date')"  id="date"> 
+                    <input placeholder="" class="textbox-n" type="text" onfocus="(this.type='date')"  id="date" v-model="date"> 
 
 
                     <p>Email</p>
-                    <input type="email" name="" placeholder="" required><br>
+                    <input type="email" name="" placeholder="" required v-model="email"><br>
 
                     <p> Mot de passe </p>
-                    <input type="password" name="" placeholder="" required><br>
+                    <input type="password" name="" placeholder="" required v-model="password"><br>
 
 
-                    <input type="submit" value="S'inscrire">
+                    <input type="submit" value="S'inscrire" v-on:click="soumettre">
                     <input value="Annuler" onclick="location.href='/Users/inkaran/Documents/MesProjets/MiageTchat-Front-End/Connexion/index.html'" type="button"> </input>
                 </form>
         </div>
 
-        <script src ="file://///Users/inkaran/Documents/MesProjets/MiageTchat-Front-End/Inscription/Inscription.js"></script>
+        <script src ="file://///Users/inkaran/Documents/MesProjets/MiageTchat-Front-End/Inscription/inscription.js"></script>
     </body>
 
 
