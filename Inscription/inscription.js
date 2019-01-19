@@ -13,13 +13,35 @@ var register = new Vue({
     },
 
     methods: {
-        soumettre: function (event){
-            console.log(this.id + this.firstname + this.picked)
-            alert(this.id)
+        soumettre: function (){
+            this.$http.post('http://miagetchat.ovh:8080/MiageTchat/webapi/Inscription',{
+                UserId: this.id,
+                Firstname: this.firstname,
+                Lastname: this.lastname,
+                Birth_Year: this.date,
+                Gender: this.picked,
+                Email: this.email,
+                Password: this.password
+
+            }),(response) => {
+
+                if(response.status==200){
+                    alert("Vous êtes inscrit")
+                }
+
+                else if(response.status==400){
+                    alert("Erreur mot de passe")
+                }
+            }
+
+
+
+            
         }
     }
 
   })
 
   // register.soumettre()
-  
+  // console.log(this.id + this.firstname + this.picked)
+// alert(this.id)

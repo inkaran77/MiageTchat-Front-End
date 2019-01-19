@@ -1,0 +1,78 @@
+var login = new Vue({
+  el: '#login',
+  data: {
+    id:'',
+    password:''
+
+  },
+
+methods: {
+    soumettre: function (){
+        this.$http.post('https://reqres.in/api/login',{
+            email: this.id,
+            password: this.password
+
+        // Ok
+        }).then(response => {
+            console.log(response.data.token)
+            const token = response.data.token
+            localStorage.setItem('my_token', token) // store the token in localstorage
+            
+
+            Swal.fire({
+                title: 'Bonjour ' +this.id,
+                text: 'Bon retour parmis nous ',
+                type: 'success',
+                onClose: () => {
+                    // Aller à la page   
+                    window.location.href = '/Users/inkaran/Documents/MesProjets/MiageTchat-Front-End/Tchat/tchat.html'
+                }
+            })
+
+        // Error
+        },response  => {
+            if(response.status==400){
+                console.log("Erreur")
+
+                Swal.fire(
+                    'Oups!',
+                    'Identifiant ou mot de passe errone',
+                    'error'
+                  )
+            }
+        });
+
+    },
+
+
+    getToken: function(){
+        token: localStorage.getItem('my_token') || ''
+        status: ''
+        //console.log(localStorage.getItem('my_token'))
+    }
+}
+
+})  
+
+
+//   methods: {
+//       soumettre: function (){
+//           this.$http.get('http://miagetchat.ovh:8080/MiageTchat/webapi/Connexion',{
+//               UserId: this.id,
+//               Password: this.password
+
+//           }),(response) => {
+
+//               if(response.status==200){
+//                   alert("Vous êtes inscrit")
+//               }
+
+//               else if(response.status==406){
+//                   alert("Erreur")
+//               }
+//           }          
+//       }
+//   }
+
+// })
+
