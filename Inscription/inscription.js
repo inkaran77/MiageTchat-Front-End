@@ -33,7 +33,7 @@ var register = new Vue({
                     type: 'success',
                     onClose: () => {
                         // Aller à la page   
-                        window.location.href = '../Connexion/connexion.html'
+                        window.location.href = '../Connexion/index.html'
                     }
                 })
     

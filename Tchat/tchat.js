@@ -42,7 +42,7 @@ methods: {
         cancelButtonText: 'Non',
       }).then((result) =>{
         if (result.value){
-          window.location.href = '../Connexion/connexion.html'
+          window.location.href = '../Connexion/index.html'
         }
       })
 
