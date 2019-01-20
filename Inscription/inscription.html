@@ -1,11 +1,15 @@
 <html>
     <head>
         <link rel="stylesheet" href="inscription.css">
-
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
+
+        <!-- Alerte Plugin -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8.0.1/dist/sweetalert2.all.min.js"></script>
+
     </head>
 
     <body>
@@ -13,12 +17,12 @@
         <div class="register" id="register">
             <img src="./images/logo.png" class="logo">
             <h1> Inscription </h1>
-            <form id="form">
-                    <fieldset>
+            <form id="form" v-on:submit.prevent="inscription">
+                    <fieldset required>
                             <div class="some-class">
-                              <input type="radio" class="radio" value="Homme" id="y" v-model="picked" />
+                              <input type="radio" class="radio" value="Homme" id="y" v-model="picked" name="gender" required/>
                               <label for="y">Homme</label>
-                              <input type="radio" class="radio" value="Femme" id="z" v-model="picked" />
+                              <input type="radio" class="radio" value="Femme" id="z" v-model="picked" name="gender" />
                               <label for="Femme">Femme</label>
                             </div>
                     </fieldset>   
@@ -43,8 +47,8 @@
                     <input type="password" name="" placeholder="" required v-model="password"><br>
 
 
-                    <input type="submit" value="S'inscrire" v-on:click="soumettre">
-                    <input value="Annuler" onclick="location.href='/Users/inkaran/Documents/MesProjets/MiageTchat-Front-End/Connexion/Connexion.html'" type="button"> </input>
+                    <input type="submit" value="S'inscrire">
+                    <input value="Annuler" onclick="location.href='../Connexion/Connexion.html'" type="button"> </input>
                 </form>
         </div>
 

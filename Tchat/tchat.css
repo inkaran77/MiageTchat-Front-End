@@ -143,6 +143,16 @@ h1{
     color: #13138a;
 }
 
-select option{
-    font-size: 10pt;
+
+
+.tchat select option{
+    font-size: 11pt;
+    margin-top: 5px;
+    margin-left: 1px
 }
+
+.online select option{
+    font-size: 10pt;
+    margin-top: 4px;
+}
+

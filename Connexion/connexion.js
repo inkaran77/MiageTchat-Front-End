@@ -25,7 +25,7 @@ methods: {
                 type: 'success',
                 onClose: () => {
                     // Aller à la page   
-                    window.location.href = '/Users/inkaran/Documents/MesProjets/MiageTchat-Front-End/Tchat/tchat.html'
+                    window.location.href = '../Tchat/tchat.html'
                 }
             })
 

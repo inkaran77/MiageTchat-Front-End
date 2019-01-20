@@ -3,20 +3,27 @@
         <link rel="stylesheet" href="tchat.css">
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
+
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+        <!-- Alerte Plugin -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8.0.1/dist/sweetalert2.all.min.js"></script>
     </head>
 
     <body>
 
-        <div class="online">
+        <div class="online" id="online" >
             <img src="./images/logo.png" class="logo">
             <h1> Online </h1>
             
             <select multiple="multiple" class="options">
-                    <option value="item1">Inkaran</option>
-                    <option value="item2">Ganeistan</option>
+                    <template v-for="user in list">
+                            <option value="item1">{{user.username}}</option>
+                    </template>
+                    
             </select>
 
-            <input value="Deconnexion" onclick="location.href='/Users/inkaran/Documents/MesProjets/MiageTchat-Front-End/Connexion/Connexion.html'" type="button"> </input>
+            <input value="Deconnexion" v-on:click="deconnexion" type="button"> </input>
         </div>
 
         <div class="message">
@@ -26,14 +33,13 @@
             </form> 
         </div>
 
-        <div class="tchat">
+        <div class="tchat" id="tchat">
     
             
             <select multiple="multiple" class="options">
-                    <option value="item1">Inkaran: Salut !</option>
-                    <option value="item2">Ganeistan: Salut</option>
-                    <option value="item3">Inkaran: ça va ?</option>
-                    <option value="item4">Ganeistan: ouais</option>
+                    <template v-for="user in list_messages">
+                            <option value="item2">{{user.username}} : {{user.company.catchPhrase}}</option>
+                    </template>
             </select>
             
         </div>
