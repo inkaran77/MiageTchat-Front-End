@@ -101,3 +101,36 @@ var tchat = new Vue({
   
   
   })  
+
+
+  var message = new Vue({
+    el: '#message',
+    data: {
+        msg:''
+    },
+  
+  methods: {
+      postMessage: function (){
+          this.$http.get('https://jsonplaceholder.typicode.com/users',{
+            //token: localStorage.getItem('my_token')
+  
+          // Ok
+          }).then(response => {
+              console.log(this.msg),
+              this.msg=''
+                
+  
+          // Error
+          },response  => {
+              if(response.status==400){
+                  console.log("Erreur")
+  
+              }
+          });
+  
+      },
+  },
+   
+  
+  
+  })  

@@ -98,13 +98,15 @@ h1{
     font-size: 12px;
     font-weight: bold;
     border-radius: 20px;
-    margin-top: -18px;
+    margin-top: -40px;
     margin-left: 410px;
     
 }
 
 .message input[type="text"]{
+    display : block;
     width: 75%;
+    height: 100%;
     margin-top: 15px;
     margin-left: 10px;
     border: none;
@@ -114,6 +116,7 @@ h1{
     height: 20px;
     font-size: 16px;
     color: #3bd1b3;
+         
 
 }
 
@@ -148,7 +151,7 @@ h1{
 .tchat select option{
     font-size: 11pt;
     margin-top: 5px;
-    margin-left: 1px
+    margin-left: 3px
 }
 
 .online select option{

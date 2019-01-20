@@ -10,7 +10,7 @@
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8.0.1/dist/sweetalert2.all.min.js"></script>
     </head>
 
-    <body>
+    <body OnLoad="document.form_message.mess.focus();" >
 
         <div class="online" id="online" >
             <img src="./images/logo.png" class="logo">
@@ -26,9 +26,12 @@
             <input value="Deconnexion" v-on:click="deconnexion" type="button"> </input>
         </div>
 
-        <div class="message">
-            <form>
-                <input type="text" name="" placeholder="" required><br>
+        <div class="message" id="message" v-on:submit.prevent="postMessage">
+            <form name="form_message">
+
+                <input type="text" name="mess" placeholder="" required  v-model="msg" 
+                oninvalid="this.setCustomValidity('Veuillez entrez un message')" oninput="this.setCustomValidity('')"><br>
+
                 <input type="submit" value="Envoyer "></input>
             </form> 
         </div>
