@@ -18,7 +18,7 @@
             
             <select multiple="multiple" class="options">
                     <template v-for="user in list">
-                            <option value="item1">{{user.username}}</option>
+                            <option value="item1">{{user.User_Id}}</option>
                     </template>
                     
             </select>
@@ -36,19 +36,17 @@
             </form> 
         </div>
 
-        <div class="tchat" id="tchat">
-    
-            
+
+        <div class="tchat" id="tchat">        
             <select multiple="multiple" class="options">
-                    <template v-for="user in list_messages">
-                            <option value="item2">{{user.username}} : {{user.company.catchPhrase}}</option>
+                    <template v-for="message in list_messages">
+                            <option value="item2">{{message.User_Id}} : {{message.Message}}</option>
                     </template>
             </select>
-            
         </div>
 
 
-        <script src ="../tchat/tchat.js"></script>
+        <script src ="../Tchat/tchat.js"></script>
     </body>
 
 

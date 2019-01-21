@@ -6,7 +6,7 @@ var register = new Vue({
       id:'',
       lastname:'',
       firstname:'',
-      date:'',
+      date: '',
       email:'',
       password:''
 
@@ -14,19 +14,17 @@ var register = new Vue({
 
     methods: {
         inscription: function (){
-            this.$http.post('https://reqres.in/api/login',{
-                // UserId: this.id,
-                // Firstname: this.firstname,
-                // Lastname: this.lastname,
-                // Birth_Year: this.date,
-                // Gender: this.picked,
-                // Email: this.email,
-                // Password: this.password
-                email: this.id,
-                password: this.password
+            this.$http.post('http://miagetchat.ovh:8080/MiageTchat/webapi/Inscription',{headers:{
+                UserId: this.id,
+                First_Name: this.firstname,
+                Last_Name: this.lastname,
+                Birth_Year: this.date,
+                Gender: this.picked,
+                Email: this.email,
+                Password: this.password
     
             // Ok
-            }).then(response => {
+            }}).then(response => {
                 Swal.fire({
                     title: 'Bravo ' +this.id,
                     text: 'Vous êtes inscrit !',
@@ -63,28 +61,3 @@ var register = new Vue({
 }) 
 
     
-
-    // methods: {
-    //     soumettre: function (){
-    //         this.$http.post('http://miagetchat.ovh:8080/MiageTchat/webapi/Inscription',{
-    //             UserId: this.id,
-    //             Firstname: this.firstname,
-    //             Lastname: this.lastname,
-    //             Birth_Year: this.date,
-    //             Gender: this.picked,
-    //             Email: this.email,
-    //             Password: this.password
-
-    //         }),(response) => {
-
-    //             if(response.status==200){
-    //                 alert("Vous êtes inscrit")
-    //             }
-
-    //             else if(response.status==400){
-    //                 alert("Erreur mot de passe")
-    //             }
-    //         }            
-    //     }
-    // }
-

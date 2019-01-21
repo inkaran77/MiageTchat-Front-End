@@ -13,14 +13,12 @@ created: function(){
 
 methods: {
     getUsersOnline: function (){
-        this.$http.get('https://jsonplaceholder.typicode.com/users',{
-        //this.$http.get('https://test91.free.beeceptor.com/users',{
-            //token: localStorage.getItem('my_token')
+        this.$http.get('http://miagetchat.ovh:8080/MiageTchat/webapi/Utilisateurs/Online',{headers:{
+        'Authorization': 'Bearer '+ localStorage.getItem('my_token')
 
         // Ok
-        }).then(response => {
-            this.list=response.data,
-            console.log(response.data)
+        }}).then(response => {
+            this.list=response.data.Users
 
         // Error
         },response  => {
@@ -33,6 +31,7 @@ methods: {
     },
 
     deconnexion: function(){
+
       Swal.fire({
         title: this.id,
         text: 'Êtes-vous sûr de vouloir vous déconnecter?',
@@ -42,6 +41,9 @@ methods: {
         cancelButtonText: 'Non',
       }).then((result) =>{
         if (result.value){
+            this.$http.get('http://miagetchat.ovh:8080/MiageTchat/webapi/Connexion/Off',{headers:{
+            'Authorization': 'Bearer '+ localStorage.getItem('my_token')
+          }})
           window.location.href = '../Connexion/index.html'
         }
       })
@@ -51,14 +53,13 @@ methods: {
 },
 
 
-
 beforeMount(){
    this.getUsersOnline()
 },
 
-//updated(){
- //   this.getUsersOnline()
-// },
+updated(){
+ this.getUsersOnline()
+},
 
 
 })  
@@ -72,13 +73,15 @@ var tchat = new Vue({
   
   methods: {
       getMessage: function (){
-          this.$http.get('https://jsonplaceholder.typicode.com/users',{
-            //token: localStorage.getItem('my_token')
+          this.$http.get('http://miagetchat.ovh:8080/MiageTchat/webapi/Message',{headers: {
+            'Authorization': 'Bearer '+ localStorage.getItem('my_token'),
+            'MsgId': localStorage.getItem('last_msg_id'),
   
           // Ok
-          }).then(response => {
-              this.list_messages=response.data,
-              console.log(response.data)
+          }}).then(response => {
+              this.list_messages=response.data.Messages,
+              console.log(this.list_messages)
+              console.log("ök")
   
           // Error
           },response  => {
@@ -95,27 +98,29 @@ var tchat = new Vue({
      this.getMessage()
   },
   
-  //updated(){
-   //   this.getMessage()
-  // },
+//   updated(){
+//        this.getMessage()
+//     },
   
   
-  })  
+})  
 
 
   var message = new Vue({
     el: '#message',
     data: {
-        msg:''
+        msg:'',
+        token: localStorage.getItem('my_token')
     },
   
   methods: {
       postMessage: function (){
-          this.$http.get('https://jsonplaceholder.typicode.com/users',{
-            //token: localStorage.getItem('my_token')
+          this.$http.post('http://miagetchat.ovh:8080/MiageTchat/webapi/Message',{headers: {
+            'Authorization': 'Bearer '+ this.token,
+            'Message': this.msg,
   
           // Ok
-          }).then(response => {
+          }}).then(response => {
               console.log(this.msg),
               this.msg=''
                 

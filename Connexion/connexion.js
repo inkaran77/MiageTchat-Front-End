@@ -8,16 +8,22 @@ var login = new Vue({
 
 methods: {
     soumettre: function (){
-        this.$http.post('https://reqres.in/api/login',{
-            email: this.id,
-            password: this.password
+        this.$http.get('http://miagetchat.ovh:8080/MiageTchat/webapi/Connexion',{headers: {
+            UserId: this.id,
+            Password: this.password
+
 
         // Ok
-        }).then(response => {
+        }}).then(response => {
             console.log(response.data.token)
+            console.log(response.data.MsgId)
+
+            const MsgId = response.data.MsgId
             const token = response.data.token
-            localStorage.setItem('my_token', token) // store the token in localstorage
             
+            localStorage.setItem('my_token', token) // stock le token dans localstorage
+            localStorage.setItem('last_msg_id', MsgId) // stock l'id du dernier msg ds localstorage
+
 
             Swal.fire({
                 title: 'Bonjour ' +this.id,
@@ -31,7 +37,7 @@ methods: {
 
         // Error
         },response  => {
-            if(response.status==400){
+            if(response.status==406){
                 console.log("Erreur")
 
                 Swal.fire(
