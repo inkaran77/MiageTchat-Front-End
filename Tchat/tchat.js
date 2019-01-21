@@ -5,11 +5,11 @@ var online = new Vue({
   },
 
 // Appeler tous les 1sec une fonctionnalite
-created: function(){
-      setInterval(function() {
-        this.getUsersOnline;
-        }, 1000);
-    },
+// created: function(){
+//       setInterval(function() {
+//         this.getUsersOnline;
+//         }, 5000);
+//     },
 
 methods: {
     getUsersOnline: function (){
@@ -31,7 +31,6 @@ methods: {
     },
 
     deconnexion: function(){
-
       Swal.fire({
         title: this.id,
         text: 'Êtes-vous sûr de vouloir vous déconnecter?',
@@ -40,11 +39,13 @@ methods: {
         confirmButtonText:'Oui',
         cancelButtonText: 'Non',
       }).then((result) =>{
+    
         if (result.value){
-            this.$http.get('http://miagetchat.ovh:8080/MiageTchat/webapi/Connexion/Off',{headers:{
+          window.location.href = '../Connexion/index.html'
+          localStorage.setItem('my_token', "") // supprime le token dans localstorage
+          this.$http.get('http://miagetchat.ovh:8080/MiageTchat/webapi/Connexion/Off',{headers:{
             'Authorization': 'Bearer '+ localStorage.getItem('my_token')
           }})
-          window.location.href = '../Connexion/index.html'
         }
       })
 
@@ -53,7 +54,7 @@ methods: {
 },
 
 
-beforeMount(){
+beforeMount: function(){
    this.getUsersOnline()
 },
 
@@ -98,9 +99,9 @@ var tchat = new Vue({
      this.getMessage()
   },
   
-//   updated(){
-//        this.getMessage()
-//     },
+ updated(){
+    this.getMessage()
+   },
   
   
 })  
@@ -115,12 +116,13 @@ var tchat = new Vue({
   
   methods: {
       postMessage: function (){
-          this.$http.post('http://miagetchat.ovh:8080/MiageTchat/webapi/Message',{headers: {
+          this.$http.post('http://miagetchat.ovh:8080/MiageTchat/webapi/Message',"",{headers: {
             'Authorization': 'Bearer '+ this.token,
             'Message': this.msg,
   
           // Ok
           }}).then(response => {
+              tchat.getMessage()
               console.log(this.msg),
               this.msg=''
                 
@@ -131,6 +133,13 @@ var tchat = new Vue({
                   console.log("Erreur")
   
               }
+
+              if(response.status==401){
+                console.log(this.token)
+                console.log(this.msg)
+                console.log("Erreur")
+
+            }
           });
   
       },
