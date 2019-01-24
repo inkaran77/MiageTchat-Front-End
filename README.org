@@ -66,25 +66,39 @@ Nous avons choisi parmi les projets disponibles (Dames, Jeux etc..),le projet Mi
    - Required :
    - Success Response :
      - Code : =200=
-     - Content : {
+     - Content :
+            {
+
             "Function": [
-               {
-                "Lien":  "http://localhost:5000/MiageTchat/Connexion",
-                "Mot-cle": "Connexion",
-                "Verbe" :"GET"
+
+              {
+               "Lien":  "http://localhost:5000/MiageTchat/Connexion",
+               
+               "Mot-cle": "Connexion",
+               
+               "Verbe" :"GET"
+               
+              },
+              
+              {
+               "Lien":  "http://localhost:5000/MiageTchat/Inscription",
+
+               "Mot-cle": "Inscription",
+
+               "Verbe":"POST"
+               
                },
+
                {
-                "Lien":  "http://localhost:5000/MiageTchat/Inscription",
-                "Mot-cle": "Inscription",
-                "Verbe":"POST"
-               },
-               {
+
                "Lien":  "http://localhost:5000/MiageTchat/Compte",
+               
                "Mot-cle": "GetCompte",
-               "Verbe": "GET"
+               
+               "Verbe": "GET" 
+               
                }
             ]
-         }
    - Error Response 1 :
      - Code : =400 BAD REQUEST=
      - Content : =Erreur=
@@ -131,7 +145,8 @@ Nous avons choisi parmi les projets disponibles (Dames, Jeux etc..),le projet Mi
    - Method : =GET=
    - Required :
            =Bearer Token=
-   - Success Response :
+   - Su
+ccess Response :
      - Code : =200=
    - Error Response 1 :
      - Code : =400 BAD REQUEST=
@@ -212,29 +227,34 @@ Nous avons choisi parmi les projets disponibles (Dames, Jeux etc..),le projet Mi
           =MsgId=[Int]=
    - Success Response :
      - Code : =200=
-     - Content :
+     - Content : 
      {
-            "Messages": [
-               {
+      
+              "Messages": [
+               
+              { 
                 "UserId":  "Inkaran",
                 "Message": "Salut",
                 "Date_Hour":"27/06/06 21:36",
                 "MsgId":"33"
-               },
-               {
+              },
+
+              {
                 "UserId":  "Ganeis",
                 "Message": "Super",
                 "Date_Hour":"27/06/06 21:37",
                 "MsgId":"34"
-               },
-               {
+              },
+
+              {
                "UserId":  "Inkaran",
                "Message": "Sava",
                "Date_Hour":"27/06/06 21:39",
                "MsgId":"35"
-               }
+              }
+           
             ]
-         }
+     }
    - Success Response :
     - Code : =201=
     - Content : =Pas de nouveau message=
@@ -255,18 +275,19 @@ Nous avons choisi parmi les projets disponibles (Dames, Jeux etc..),le projet Mi
      - Content :
          {
             "Users": [
+     
                {
-                "UserId":  "Inkaran"
-
+                "UserId":  "Inkaran" 
                },
+
                {
                 "UserId":  "Ganeis"
+                },
 
-               },
                {
                "UserId":  "Kevin"
-
                }
+
             ]
          }
    - Error Response 1 :
@@ -284,18 +305,15 @@ Nous avons choisi parmi les projets disponibles (Dames, Jeux etc..),le projet Mi
      - Content :
          {
             "Users": [
+     
                {
-                "UserId":  "Inkaran"
-
+                "UserId":  "Inkaran" 
                },
+
                {
                 "UserId":  "Ganeis"
+                }
 
-               },
-               {
-               "UserId":  "Kevin"
-
-               }
             ]
          }
    - Error Response 1 :
