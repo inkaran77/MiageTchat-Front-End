@@ -11,6 +11,7 @@
   - [[#accès][Accès]]
     - [[#connexion][Connexion]]
     - [[#inscription][Inscription]]
+    - [[#déconnexion][Déconnexion]]
   - [[#compte][Compte]]
     - [[#getcompte][GetCompte]]
     - [[#updatecompte][UpdateCompte]]
@@ -30,74 +31,60 @@
 Nous avons choisi parmi les projets disponibles (Dames, Jeux etc..),le projet MiageTchat qui est un tchat online like MSN public.
 
 * Avancement du projet
-| Fontionnalité        | Back         | Front      | Test |
-|----------------------+--------------+------------+------|
-| *Ressource*          |              |            |      |
-| Ressource            | Ganeistan    | Inkaran    |      |
-|----------------------+--------------+------------+------|
-| *Accès*              |              |            |      |
-| Connexion            | Ganeistan    | Inkaran    |      |
-| Inscription          | Ganeistan    | Inkaran    |      |
-|----------------------+--------------+------------+------|
-| *Compte*             |              |            |      |
-| GetCompte            | Ganeistan    | Inkaran    |      |
-| UpdateCompte         | Ganeistan    | Inkaran    |      |
-| DeleteCompte         | Ganeistan    | Inkaran    |      |
-|----------------------+--------------+------------+------|
-| *Message*            |              |            |      |
-| PostMessage          | Ganeistan    | Inkaran    |      |
-| GetMessage           | Ganeistan    | Inkaran    |      |
-|----------------------+--------------+------------+------|
-| *Acceuil*            |              |            |      |
-| GetAllUsers          | Ganeistan    | Inkaran    |      |
-| GetUsersOnline       | Ganeistan    | Inkaran    |      |
-|----------------------+--------------+------------+------|
-| À venir              |              |            |      |
-| ...                  | Ganeistan    | Inkaran    |      |
+| Fontionnalité  | Back      | Front   | Test |
+|----------------+-----------+---------+------|
+| *Ressource*    |           |         |      |
+| Ressource      | Ganeistan | Inkaran | OK   |
+|----------------+-----------+---------+------|
+| *Accès*        |           |         |      |
+| Connexion      | Ganeistan | Inkaran | OK   |
+| Inscription    | Ganeistan | Inkaran | OK   |
+| Déconnexion    | Ganeistan | Inkaran |      |
+|----------------+-----------+---------+------|
+| *Compte*       |           |         |      |
+| GetCompte      | Ganeistan | Inkaran | OK   |
+| UpdateCompte   | Ganeistan | Inkaran | OK   |
+| DeleteCompte   | Ganeistan | Inkaran | OK   |
+|----------------+-----------+---------+------|
+| *Message*      |           |         |      |
+| PostMessage    | Ganeistan | Inkaran | OK   |
+| GetMessage     | Ganeistan | Inkaran | OK   |
+|----------------+-----------+---------+------|
+| *Acceuil*      |           |         |      |
+| GetAllUsers    | Ganeistan | Inkaran | OK   |
+| GetUsersOnline | Ganeistan | Inkaran |      |
+|----------------+-----------+---------+------|
+| À venir        |           |         |      |
+| ...            | Ganeistan | Inkaran |      |
 
 * Contrat d'accès
 ** Ressource
 *** Ressource
   - Return : http code + les méthodes format json
-   - Url : [[http://localhost:5000/MiageTchat/Ressource]]
+   - Url : [[http://miagetchat.ovh:8080/MiageTchat/webapi/Ressource]]
    - Method : =GET=
    - Required :
    - Success Response :
      - Code : =200=
-     - Content :
-            {
-
+     - Content : {
             "Function": [
-
-              {
-               "Lien":  "http://localhost:5000/MiageTchat/Connexion",
-               
-               "Mot-cle": "Connexion",
-               
-               "Verbe" :"GET"
-               
-              },
-              
-              {
-               "Lien":  "http://localhost:5000/MiageTchat/Inscription",
-
-               "Mot-cle": "Inscription",
-
-               "Verbe":"POST"
-               
-               },
-
                {
-
+                "Lien":  "http://localhost:5000/MiageTchat/Connexion",
+                "Mot-cle": "Connexion",
+                "Verbe" :"GET"
+               },
+               {
+                "Lien":  "http://localhost:5000/MiageTchat/Inscription",
+                "Mot-cle": "Inscription",
+                "Verbe":"POST"
+               },
+               {
                "Lien":  "http://localhost:5000/MiageTchat/Compte",
-               
                "Mot-cle": "GetCompte",
-               
-               "Verbe": "GET" 
-               
+               "Verbe": "GET"
                }
             ]
-            }
+         }
    - Error Response 1 :
      - Code : =400 BAD REQUEST=
      - Content : =Erreur=
@@ -105,7 +92,7 @@ Nous avons choisi parmi les projets disponibles (Dames, Jeux etc..),le projet Mi
 ** Accès
 *** Connexion
    - Return : =un bearer token ou une http code erreur=
-   - Url :[[http://localhost:5000/MiageTchat/Connexion]]
+   - Url :[[http://miagetchat.ovh:8080/MiageTchat/webapi/Connexion]]
    - Method : =GET=
    - Required : =Id=[String]=  =Password=[String]=
    - Success Response :
@@ -121,7 +108,7 @@ Nous avons choisi parmi les projets disponibles (Dames, Jeux etc..),le projet Mi
 
 *** Inscription
    - Return : http code
-   - Url : [[http://localhost:5000/MiageTchat/Inscription]]
+   - Url : [[http://miagetchat.ovh:8080/MiageTchat/webapi/Inscription]]
    - Method : =POST=
    - Required :
           =UserId=[String]=
@@ -138,11 +125,23 @@ Nous avons choisi parmi les projets disponibles (Dames, Jeux etc..),le projet Mi
      - Code : =400 BAD REQUEST=
      - Content : =ID déja utilisé=
 
+*** Déconnexion
+   - Return : =un bearer token ou une http code erreur=
+   - Url :[[http://miagetchat.ovh:8080/MiageTchat/webapi/Connexion/Off]]
+   - Method : =GET=
+   - Required :
+           =Bearer Token=
+   - Success Response :
+     - Code : =200=
+   - Error Response 1 :
+     - Code : =400 BAD REQUEST=
+     - Content : =Mot de passe erroné=
+
 
 ** Compte
 *** GetCompte
    - Return : http code + user data in json
-   - Url : [[http://localhost:5000/MiageTchat/Compte]]
+   - Url : [[http://miagetchat.ovh:8080/MiageTchat/webapi/Compte]]
    - Method : =GET=
    - Required :
            =Bearer Token=
@@ -154,8 +153,8 @@ Nous avons choisi parmi les projets disponibles (Dames, Jeux etc..),le projet Mi
 
 
 *** UpdateCompte
-   - Return : http code + message 
-   - Url : [[http://localhost:5000/MiageTchat/Compte]]
+   - Return : http code + message
+   - Url : [[http://miagetchat.ovh:8080/MiageTchat/webapi/Compte]]
    - Method : =PUT=
    - Required :
           =Bearer Token=
@@ -170,16 +169,16 @@ Nous avons choisi parmi les projets disponibles (Dames, Jeux etc..),le projet Mi
      - Code : =200=
      - Content : =Compte mise à jour=
    - Error Response 1 :
-     - Code : =401 Unauthorized=         
+     - Code : =401 Unauthorized=
 
 *** DeleteCompte
    - Return : http code + liste des photos
-   - Url : [[http://localhost:5000/MiageTchat/Compte]]
+   - Url : [[http://miagetchat.ovh:8080/MiageTchat/webapi/Compte]]
    - Method : =DELETE=
    - Required :
            =Bearer Token=
             =UserId=[String]=
-          
+
    - Success Response :
     - Code : =200=
     - Content : =Votre profil est bien supprimé=
@@ -191,12 +190,12 @@ Nous avons choisi parmi les projets disponibles (Dames, Jeux etc..),le projet Mi
 *** PostMessage
    - Description : Pour envoyer un message sur le fil public
    - Return : http code
-   - Url : [[http://localhost:5000/MiageTchat/Message]]
+   - Url : [[http://miagetchat.ovh:8080/MiageTchat/webapi/Message]]
    - Method : =POST=
    - Required :
      =Bearer Token=
           =Message=[String]=
-          
+
    - Success Response :
      - Code : =200=
      - Content : =Votre message a été envoyer=
@@ -206,52 +205,48 @@ Nous avons choisi parmi les projets disponibles (Dames, Jeux etc..),le projet Mi
 
 *** GetMessage
    - Return : http code + message
-   - Url : [[http://localhost:5000/MiageTchat/Message]]
+   - Url : [[http://miagetchat.ovh:8080/MiageTchat/webapi/Message]]
    - Method : =GET=
    - Required :
           =Bearer Token=
           =MsgId=[Int]=
    - Success Response :
      - Code : =200=
-     - Content : 
+     - Content :
      {
-      
-              "Messages": [
-               
-              { 
+            "Messages": [
+               {
                 "UserId":  "Inkaran",
                 "Message": "Salut",
                 "Date_Hour":"27/06/06 21:36",
                 "MsgId":"33"
-              },
-
-              {
+               },
+               {
                 "UserId":  "Ganeis",
                 "Message": "Super",
                 "Date_Hour":"27/06/06 21:37",
                 "MsgId":"34"
-              },
-
-              {
+               },
+               {
                "UserId":  "Inkaran",
                "Message": "Sava",
                "Date_Hour":"27/06/06 21:39",
                "MsgId":"35"
-              }
-           
+               }
             ]
-     }
-
+         }
    - Success Response :
     - Code : =201=
     - Content : =Pas de nouveau message=
-   - Error Response 1 :
+    - Error Response 1 :
      - Code : =400 BAD REQUEST=
      - Content : =Erreur=
+
+
 ** Acceuil
 *** GetAllUsers
    - Return : http code + tous users
-   - Url : [[http://localhost:5000/MiageTchat/Utilisateurs]]
+   - Url : [[http://miagetchat.ovh:8080/MiageTchat/webapi/Utilisateurs]]
    - Method : =GET=
    - Required :
           =Bearer Token=
@@ -260,19 +255,18 @@ Nous avons choisi parmi les projets disponibles (Dames, Jeux etc..),le projet Mi
      - Content :
          {
             "Users": [
-     
                {
-                "UserId":  "Inkaran" 
-               },
+                "UserId":  "Inkaran"
 
+               },
                {
                 "UserId":  "Ganeis"
-                },
 
+               },
                {
                "UserId":  "Kevin"
-               }
 
+               }
             ]
          }
    - Error Response 1 :
@@ -281,33 +275,29 @@ Nous avons choisi parmi les projets disponibles (Dames, Jeux etc..),le projet Mi
 
 *** GetUsersOnline
    - Return : http code + tous users online
-   - Url : [[http://localhost:5000/MiageTchat/Utilisateurs/Online]]
+   - Url : [[http://miagetchat.ovh:8080/MiageTchat/webapi/Utilisateurs/Online]]
    - Method : =GET=
    - Required :
           =Bearer Token=
    - Success Response :
      - Code : =200=
      - Content :
-          {
+         {
             "Users": [
-     
                {
-                "UserId":  "Inkaran" 
-               },
+                "UserId":  "Inkaran"
 
+               },
                {
                 "UserId":  "Ganeis"
-                },
 
+               },
                {
                "UserId":  "Kevin"
-               }
 
+               }
             ]
          }
    - Error Response 1 :
      - Code : =400 BAD REQUEST=
      - Content : =Erreur=
-
-
-
