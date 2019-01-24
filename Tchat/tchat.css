@@ -70,6 +70,7 @@ h1{
     text-align: center;
     outline: none;
     color: #3bd1b3;
+    text-transform: capitalize;
 }
 
 .message{
@@ -100,15 +101,16 @@ h1{
     border-radius: 20px;
     margin-top: -40px;
     margin-left: 410px;
+    visibility:hidden;
     
 }
 
 .message input[type="text"]{
     display : block;
-    width: 75%;
+    width: 92%;
     height: 100%;
     margin-top: 15px;
-    margin-left: 10px;
+    margin-left: 15px;
     border: none;
     border-bottom: 1px solid #13138a;
     background: transparent;
@@ -144,6 +146,7 @@ h1{
     overflow:hidden;
     outline: none;
     color: #13138a;
+    
 }
 
 
@@ -151,7 +154,12 @@ h1{
 .tchat select option{
     font-size: 11pt;
     margin-top: 5px;
-    margin-left: 3px
+    margin-left: 3px;
+    
+}
+
+.tchat select option::first-letter{
+    text-transform: capitalize;
 }
 
 .online select option{

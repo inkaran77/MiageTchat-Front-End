@@ -19,6 +19,7 @@ methods: {
         // Ok
         }}).then(response => {
             this.list=response.data.Users
+            tchat.getMessage()
 
         // Error
         },response  => {
@@ -31,35 +32,39 @@ methods: {
     },
 
     deconnexion: function(){
-      Swal.fire({
-        title: this.id,
-        text: 'Êtes-vous sûr de vouloir vous déconnecter?',
-        type: 'warning',
-        showCancelButton: true,
-        confirmButtonText:'Oui',
-        cancelButtonText: 'Non',
-      }).then((result) =>{
-    
-        if (result.value){
-          window.location.href = '../Connexion/index.html'
-          localStorage.setItem('my_token', "") // supprime le token dans localstorage
-          this.$http.get('http://miagetchat.ovh:8080/MiageTchat/webapi/Connexion/Off',{headers:{
-            'Authorization': 'Bearer '+ localStorage.getItem('my_token')
+         this.$http.get('http://miagetchat.ovh:8080/MiageTchat/webapi/Connexion/off',{headers:{
+             'Authorization': 'Bearer '+ localStorage.getItem('my_token')
           }})
-        }
-      })
 
+        localStorage.setItem('my_token', "") // supprime le token dans localstorage  
+        window.location.href = '../Connexion/index.html'
+      
+        // Swal.fire({
+        // title: this.id,
+        // text: 'Êtes-vous sûr de vouloir vous déconnecter?',
+        // type: 'warning',
+        // showCancelButton: true,
+        // confirmButtonText:'Oui',
+        // cancelButtonText: 'Non',
+        // }).then(result =>{
+
+        //     if (result.value){
+        //         this.$http.get('http://miagetchat.ovh:8080/MiageTchat/webapi/Connexion/Off',{headers:{
+        //             'Authorization': 'Bearer '+ localStorage.getItem('my_token')}})
+        //  localStorage.setItem('my_token', "") // supprime le token dans localstorage        
+        //  window.location.href = '../Connexion/index.html'
+        // }
+        // })
 
     },
 },
 
-
-beforeMount: function(){
-   this.getUsersOnline()
+created: function(){
+    this.getUsersOnline()
 },
 
 updated(){
- this.getUsersOnline()
+  this.getUsersOnline()
 },
 
 
@@ -82,7 +87,6 @@ var tchat = new Vue({
           }}).then(response => {
               this.list_messages=response.data.Messages,
               console.log(this.list_messages)
-              console.log("ök")
   
           // Error
           },response  => {
@@ -93,18 +97,21 @@ var tchat = new Vue({
           });
   
       },
-  },
-  
-  beforeMount(){
+    },  
+
+mounted: function(){
      this.getMessage()
   },
+
+
   
- updated(){
+updated: function(){
     this.getMessage()
-   },
-  
+   }  
   
 })  
+
+
 
 
   var message = new Vue({
