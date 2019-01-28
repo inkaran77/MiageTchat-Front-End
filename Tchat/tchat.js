@@ -13,7 +13,7 @@ var online = new Vue({
 
 methods: {
     getUsersOnline: function (){
-        this.$http.get('http://miagetchat.ovh:8080/MiageTchat/webapi/Utilisateurs/Online',{headers:{
+        this.$http.get('https://miagetchat.ovh:8181/MiageTchat/webapi/Utilisateurs/Online',{headers:{
         'Authorization': 'Bearer '+ localStorage.getItem('my_token')
 
         // Ok
@@ -32,41 +32,42 @@ methods: {
     },
 
     deconnexion: function(){
-         this.$http.get('http://miagetchat.ovh:8080/MiageTchat/webapi/Connexion/off',{headers:{
-             'Authorization': 'Bearer '+ localStorage.getItem('my_token')
-          }})
-
-        localStorage.setItem('my_token', "") // supprime le token dans localstorage  
-        window.location.href = '../Connexion/index.html'
-      
-        // Swal.fire({
-        // title: this.id,
-        // text: 'Êtes-vous sûr de vouloir vous déconnecter?',
-        // type: 'warning',
-        // showCancelButton: true,
-        // confirmButtonText:'Oui',
-        // cancelButtonText: 'Non',
-        // }).then(result =>{
-
-        //     if (result.value){
-        //         this.$http.get('http://miagetchat.ovh:8080/MiageTchat/webapi/Connexion/Off',{headers:{
-        //             'Authorization': 'Bearer '+ localStorage.getItem('my_token')}})
-        //  localStorage.setItem('my_token', "") // supprime le token dans localstorage        
-        //  window.location.href = '../Connexion/index.html'
-        // }
-        // })
-
-    },
+         
+            Swal.fire({
+                title: this.id,
+                text: 'Êtes-vous sûr de vouloir vous déconnecter?',
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonText:'Oui',
+                cancelButtonText: 'Non',
+                }).then(result =>{
+        
+                    if (result.value){
+                        this.$http.get('https://miagetchat.ovh:8181/MiageTchat/webapi/Connexion/Off',{headers:{
+                        'Authorization': 'Bearer '+ localStorage.getItem('my_token')
+                        
+                        }}).then(response => {
+                            window.location.href = '../Connexion/index.html'
+                        
+                          // Error
+                        },response  => {
+                            if(response.status==400){
+                                console.log("Erreur")
+                            }
+                        });
+                    }
+                })
+                
+        },                
 },
-
+        
 created: function(){
     this.getUsersOnline()
-},
+    },
 
 updated(){
   this.getUsersOnline()
-},
-
+    },
 
 })  
 
@@ -79,7 +80,7 @@ var tchat = new Vue({
   
   methods: {
       getMessage: function (){
-          this.$http.get('http://miagetchat.ovh:8080/MiageTchat/webapi/Message',{headers: {
+          this.$http.get('https://miagetchat.ovh:8181/MiageTchat/webapi/Message',{headers: {
             'Authorization': 'Bearer '+ localStorage.getItem('my_token'),
             'MsgId': localStorage.getItem('last_msg_id'),
   
@@ -123,7 +124,7 @@ updated: function(){
   
   methods: {
       postMessage: function (){
-          this.$http.post('http://miagetchat.ovh:8080/MiageTchat/webapi/Message',"",{headers: {
+          this.$http.post('https://miagetchat.ovh:8181/MiageTchat/webapi/Message',"",{headers: {
             'Authorization': 'Bearer '+ this.token,
             'Message': this.msg,
   
